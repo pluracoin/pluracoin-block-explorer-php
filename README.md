@@ -7,4 +7,4 @@ SETUP
 
 ```./pluracoind --restricted-rpc --enable-cors=* --enable-blockchain-indexes --rpc-bind-ip=0.0.0.0 --rpc-bind-port=19214```
 
-Don't forget to allow incoming requests to port 19214 on your firewall. If you run the ```pluracoind``` daemon and block explorer on the same machine then changes at firewall are not needed.
+Don't forget to allow incoming requests to port ```19214``` on your firewall. If you run the ```pluracoind``` daemon and block explorer on the same machine then changes at firewall are not needed.
