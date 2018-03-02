@@ -1,8 +1,10 @@
-<?php 
+<?
+	include("../config.php");
 
 $data_string = '{"jsonrpc":"2.0","id":"test","method":"getlastblockheader","params":" "}';
 
-$ch = curl_init('http://127.0.0.1:19214/json_rpc');
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $api_url."/json_rpc");
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -13,23 +15,23 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
 $result = curl_exec($ch);
 
-// print_r($result);
-
 // Decode the response
-$responseData = json_decode($result, TRUE);
+$responseData = json_decode($result, TRUE, 4);
 
 // Print the date from the response
 // print_r($responseData);
 
 $hash = $responseData['result']['block_header']['hash'];
 
-//print_r($hash);
 curl_close($ch);
+
+// ---
 
 $data_string2 = '{"jsonrpc":"2.0","id":"test","method":"f_block_json","params":{"hash":"'.$hash.'"}}';
 
 
-$ch2 = curl_init('http://127.0.0.1:19214/json_rpc');
+$ch2 = curl_init();
+curl_setopt($ch2, CURLOPT_URL, $api_url."/json_rpc");
 curl_setopt($ch2, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($ch2, CURLOPT_POSTFIELDS, $data_string2);
 curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
